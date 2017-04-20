@@ -1,0 +1,118 @@
+<?php
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woothemes.com/document/template-structure/
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     2.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+get_header( 'shop' ); ?>
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- MAIN -->
+<div class="l-main">
+	<div class="l-main-h i-cf">
+
+		<div class="l-content g-html">
+		
+		<?php woocommerce_product_loop_start(); ?>
+
+			<?php do_action( 'us_before_page' ) ?>
+
+			<?php
+			while ( have_posts() ){
+				the_post();
+
+				$the_content = apply_filters( 'the_content', get_the_content() );
+
+				// The page may be paginated itself via <!--nextpage--> tags
+				$pagination = us_wp_link_pages( array(
+					'before' => '<div class="w-blog-pagination"><nav class="navigation pagination" role="navigation">',
+					'after' => '</nav></div>',
+					'next_or_number' => 'next_and_number',
+					'nextpagelink' => '>',
+					'previouspagelink' => '<',
+					'link_before' => '<span>',
+					'link_after' => '</span>',
+					'echo' => 0
+				) );
+
+				// If content has no sections, we'll create them manually
+				$has_own_sections = ( strpos( $the_content, ' class="l-section' ) !== FALSE );
+				if ( ! $has_own_sections ) {
+					$the_content = '<section class="l-section"><div class="l-section-h i-cf">' . $the_content . $pagination . '</div></section>';
+				} elseif ( ! empty( $pagination ) ) {
+					$the_content .= '<section class="l-section"><div class="l-section-h i-cf">' . $pagination . '</div></section>';
+				}
+
+				echo $the_content;
+
+				
+			}
+			?>
+
+			
+			<?php wc_get_template_part( 'content', 'product' ); ?>
+			
+			<?php do_action( 'us_after_page' ) ?>
+			
+			<?php woocommerce_product_loop_end(); ?>
+
+		</div>
+
+		<?php if ( $us_layout->sidebar_pos == 'left' OR $us_layout->sidebar_pos == 'right' ): ?>
+			<aside class="l-sidebar at_<?php echo $us_layout->sidebar_pos ?><?php echo generated_dynamic_sidebar_class() ?>">
+				<?php do_action( 'woocommerce_sidebar' ); ?>
+			</aside>
+		<?php endif; ?>
+
+	</div>
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<?php get_footer( 'shop' ); ?>

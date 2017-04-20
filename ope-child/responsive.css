@@ -1,0 +1,22 @@
+@media (max-width:900px) {
+.w-image:last-child, .l-section.width_full .g-cols > .full-width > .w-image {
+    margin-top: 78px!important;
+}
+}
+
+@media (max-width:600px) {
+.w-image:last-child, .l-section.width_full .g-cols > .full-width > .w-image {
+    margin-top: 0px!important;
+}
+}
+
+
+@media (max-width:320px) {
+.woocommerce-type_2 ul.products {
+    margin: 0;
+}
+
+.w-tabs.layout_default.accordion .w-tabs-section-content-h {
+    padding: 5px;
+}
+}

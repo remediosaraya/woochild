@@ -1,0 +1,36 @@
+<?php
+/* Custom functions code goes here. */
+
+
+function add_this_script_footer(){ ?>
+
+<script>
+
+
+
+$( document ).ready(function() {
+    $(".single-product a.button.product_type_simple.add_to_cart_button").text("Adicionar");
+	
+	
+	
+	$(".single-product a.button.product_type_simple.add_to_cart_button").click(function(e) {
+		
+	
+
+    if( $("input.input-text.qty.text").val() == 0)
+	{
+		alert("Debe de agregar al menos un elemento");
+return false;
+}	
+		
+   
+});
+	
+	
+});
+
+</script>
+
+<?php } 
+
+add_action('wp_footer', 'add_this_script_footer'); 
